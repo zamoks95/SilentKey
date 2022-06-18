@@ -24,7 +24,7 @@ function Box(props) {
   );
 }
 
-const Template = () => (
+const Snake = () => (
   <div>
     <Canvas style={{ width: '512px', height: '512px' }}>
       <ambientLight intensity={0.5} />
@@ -35,4 +35,4 @@ const Template = () => (
   </div>
 );
 
-export { Template };
+export { Snake };
