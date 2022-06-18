@@ -15,11 +15,17 @@ module.exports = {
           500: '#00c4fd',
         },
         dark: '#333333',
+        darker: '#0f172a'
       },
+      w: {
+        '512': '512px'
+      }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 };
