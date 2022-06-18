@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Wrapper } from '../components/Wrapper';
-import { Template, Snake } from '@/components/scenes';
+import { Template } from '@/components/scenes';
 
 const Home = () => {
   const scenes = [
@@ -9,11 +9,6 @@ const Home = () => {
       name: 'Template',
       slug: 'template',
       component: <Template />,
-    },
-    {
-      name: 'Snake',
-      slug: 'snake',
-      component: <Snake />,
     },
   ];
   return (

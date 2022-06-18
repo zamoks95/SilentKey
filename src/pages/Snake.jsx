@@ -1,19 +1,13 @@
 import React from 'react';
 
-import { Wrapper } from '../components/Wrapper';
-
-import { Template as Scene } from '@/components/scenes';
+import { Scene } from '@/components/scenes/Snake/Scene';
 
 const Template = () => {
   return (
     <main>
-      <section className='bg-dark py-6'>
-        <div className='flex flex-col items-center min-h-screen text-white layout'>
-          <h1 className='pt-12'>Template</h1>
-          <h2 className='pt-4 pb-12'>By SilentKey</h2>
-          <Wrapper>
-            <Scene />
-          </Wrapper>
+      <section className='bg-dark py-6 h-screen'>
+        <div className='bg-red w-[1280px] h-[720px] m-auto outline outline-white'>
+          <Scene />
         </div>
       </section>
     </main>

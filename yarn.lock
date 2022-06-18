@@ -270,7 +270,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@react-three/fiber@^8.0.26":
+"@react-three/fiber@^8.0.26", "@react-three/fiber@latest":
   version "8.0.26"
   resolved "https://registry.yarnpkg.com/@react-three/fiber/-/fiber-8.0.26.tgz#a7e271aedf8626e269346df865bcbb6aceb21e21"
   integrity sha512-6svPl3YxuNsB9SKJry17rZcgDsF6sVNsY1DF2PrFKxtQk0p9CHAAEP4SczJaOgFlSUsePP78h/r83EsMMC+TVg==
@@ -1328,6 +1328,13 @@ react-router@5.3.3, react-router@^5.2.0:
     react-is "^16.6.0"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
+
+react-three-fiber@^6.0.13:
+  version "6.0.13"
+  resolved "https://registry.yarnpkg.com/react-three-fiber/-/react-three-fiber-6.0.13.tgz#6dbbc5d8d5fe94c49986e9c71024af7eaf68a441"
+  integrity sha512-uShQnkMVLvnzwf3YzY9mnzCnpmLpvTQkc0ycrtwk8fyjXmZt2695tLn3tufPF6uxq06UKJRKJcjCVCMXyUcEPQ==
+  dependencies:
+    "@react-three/fiber" latest
 
 react-use-measure@^2.1.1:
   version "2.1.1"

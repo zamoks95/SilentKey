@@ -1,38 +1,73 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 
-import { Canvas, useFrame } from '@react-three/fiber';
+const baseSpeed = 0.3;
 
-function Box(props) {
-  // This reference gives us direct access to the THREE.Mesh object
-  const ref = useRef();
-  // Hold state for hovered and clicked events
-  const [hovered, hover] = useState(false);
-  const [clicked, click] = useState(false);
-  useFrame(() => (ref.current.rotation.x += 0.01));
+document.addEventListener('keydown', (event) => controlSnake(event), false);
+
+let vX = baseSpeed;
+let vZ = 0;
+
+const isDead = (position) => {
   return (
-    <mesh
-      {...props}
-      ref={ref}
-      scale={clicked ? 1.5 : 1}
-      onClick={(event) => click(!clicked)}
-      onPointerOver={(event) => hover(true)}
-      onPointerOut={(event) => hover(false)}
-    >
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+    position.x >= 24 ||
+    position.x <= -24 ||
+    position.z >= 24 ||
+    position.z <= -24
+  );
+};
+
+const controlSnake = (event) => {
+  switch (event.key) {
+    case 'ArrowUp':
+      vX = 0;
+      vZ = -baseSpeed;
+      break;
+    case 'ArrowDown':
+      vX = 0;
+      vZ = baseSpeed;
+      break;
+    case 'ArrowLeft':
+      vX = -baseSpeed;
+      vZ = 0;
+      break;
+    case 'ArrowRight':
+      vX = baseSpeed;
+      vZ = 0;
+      break;
+  }
+};
+
+const SnakeHead = ({ position, ref }) => {
+  return (
+    <mesh position={position} scale={1} ref={ref}>
+      <sphereGeometry attach='geometry' args={[1, 16, 200]} />
+      <meshStandardMaterial color={'red'} />
     </mesh>
   );
-}
+};
 
-const Snake = () => (
-  <div>
-    <Canvas style={{ width: '512px', height: '512px' }}>
-      <ambientLight intensity={0.5} />
-      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-      <pointLight position={[-10, -10, -10]} />
-      <Box position={[0, 0, 0]} />
-    </Canvas>
-  </div>
-);
+const Snake = () => {
+  const ref = useRef();
+
+  useFrame(() => {
+    (ref.current.position.x += vX), (ref.current.position.z += vZ);
+  });
+
+  setInterval(() => {
+    const { position } = ref.current;
+    if (isDead(position)) {
+      ref.current.position.x = 0;
+      ref.current.position.z = 0;
+    }
+  }, 100);
+
+  return (
+    <mesh position={[0, 1, 0]} ref={ref} scale={1}>
+      <sphereGeometry attach='geometry' args={[1, 16, 200]} />
+      <meshStandardMaterial color={'red'} />
+    </mesh>
+  );
+};
 
 export { Snake };
